@@ -6,7 +6,7 @@ import { BASE_URL } from '../utils/config'
 import { removeUser } from '../utils/UserSlice'
 
 const Navbar = () => {
-    const user = useSelector((state) => state.appSlice)
+    const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
 
@@ -15,17 +15,14 @@ const Navbar = () => {
         const res = await axios.post(BASE_URL + "signOut", {}, { withCredentials: true })
         navigate("/singIn")
         dispatch(removeUser())
-
-
     }
     return (
         <div className="navbar bg-base-300 px-10">
             <div className="flex-1">
-                <Link to="/" className="btn btn-ghost text-xl">Tinder</Link>
+                <Link to="/feed" className="btn btn-ghost text-xl">Tinder</Link>
             </div>
 
             <div className="flex-none gap-2">
-                <button className="btn btn-active btn-primary">       < Link to="/singIn">SignIn</Link></button>
 
                 <div className="dropdown dropdown-end">
                     {user && <div className='flex items-center gap-5'>
@@ -42,6 +39,8 @@ const Navbar = () => {
                         </div>
 
                     </div>}
+                    {!user && <button className="btn btn-active btn-primary">       < Link to="/singIn">SignIn</Link></button>
+                    }
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">

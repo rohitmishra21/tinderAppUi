@@ -19,7 +19,7 @@ function Feed() {
   }, [])
 
   return (
-    <div className='flex justify-center mt-12'>
+    <div className='flex justify-center mt-2'>
       {feed && <Card user={feed[0]} />}
     </div>
   )
