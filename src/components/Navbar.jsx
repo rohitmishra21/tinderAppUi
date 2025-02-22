@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-300 px-10">
             <div className="flex-1">
-                <Link to="/feed" className="btn btn-ghost text-xl">Tinder</Link>
+                <Link to="/" className="btn btn-ghost text-xl">Tinder</Link>
             </div>
 
             <div className="flex-none gap-2">
@@ -43,10 +43,22 @@ const Navbar = () => {
                     }
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>
                             <Link to="/profile" className="justify-between">
                                 Profile
+                                <span className="badge">New</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/connections" className="justify-between">
+                                Connections
+                                <span className="badge">New</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/request" className="justify-between">
+                                Requests
                                 <span className="badge">New</span>
                             </Link>
                         </li>

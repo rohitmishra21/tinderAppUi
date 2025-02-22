@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/config'
 const SignIn = () => {
 
-  const [email, setEmail] = useState("rahul@gmail.com")
+  const [email, setEmail] = useState("rohit@gmail.com")
   const [password, setPassword] = useState("rohit2711")
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -14,7 +14,7 @@ const SignIn = () => {
   async function submitHendler() {
     const res = await axios.post(BASE_URL + "signIn", { email, password }, { withCredentials: true })
     dispatch(setUser(res.data))
-    navigate("/feed")
+    navigate("/")
   }
 
 

@@ -18,6 +18,12 @@ function Feed() {
     getFeed()
   }, [])
 
+  if (!feed) {
+    return
+  }
+  if (feed.length === 0) {
+    return <h1 className='text-2xl text-center mt-3'>No User</h1>
+  }
   return (
     <div className='flex justify-center mt-2'>
       {feed && <Card user={feed[0]} />}
