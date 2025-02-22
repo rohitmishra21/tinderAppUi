@@ -6,17 +6,19 @@ import SignUp from './components/SignUp'
 import { Provider } from 'react-redux'
 import AppStore from './utils/AppStore'
 import Feed from './components/Feed'
+import Profile from './components/Profile'
 
 
 const App = () => {
   return (
     <Provider store={AppStore}>
-      <BrowserRouter>
+      <BrowserRouter basename='/'>
         <Routes>
-          <Route path='/' element={<Body />}>
-            <Route path='/singIn' element={<SignIn />} />
-            <Route path='/singUp' element={<SignUp />} />
+          <Route path="/" element={<Body />}>
+            <Route path="/singIn" element={<SignIn />} />
+            <Route path="/singUp" element={<SignUp />} />
             <Route path="/feed" element={<Feed />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

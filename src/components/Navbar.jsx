@@ -1,19 +1,35 @@
+import axios from 'axios'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../utils/config'
+import { removeUser } from '../utils/UserSlice'
 
 const Navbar = () => {
     const user = useSelector((state) => state.appSlice)
+    const dispatch = useDispatch()
+
+
+    const navigate = useNavigate()
+    async function logOutHendler() {
+        const res = await axios.post(BASE_URL + "signOut", {}, { withCredentials: true })
+        navigate("/singIn")
+        dispatch(removeUser())
+
+
+    }
     return (
         <div className="navbar bg-base-300 px-10">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Tinder</a>
+                <Link to="/" className="btn btn-ghost text-xl">Tinder</Link>
             </div>
+
             <div className="flex-none gap-2">
+                <button className="btn btn-active btn-primary">       < Link to="/singIn">SignIn</Link></button>
 
                 <div className="dropdown dropdown-end">
-                    {user.profileImg && <div className='flex items-center gap-5'>
-                        <h1 className='font-bold capitalize '>Welcome {user.firstName}</h1>
+                    {user && <div className='flex items-center gap-5'>
+                        <h1 className='font-bold capitalize '>Welcome {user?.firstName}</h1>
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
 
                             <div className="w-10 rounded-full">
@@ -30,13 +46,13 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>
-                            <a className="justify-between">
+                            <Link to="/profile" className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
-                            </a>
+                            </Link>
                         </li>
-                        <li><Link to="/singIn">SignIn</Link></li>
-                        <li><Link>Logout</Link></li>
+
+                        <li><Link onClick={logOutHendler}>Logout</Link></li>
                     </ul>
                 </div>
             </div>

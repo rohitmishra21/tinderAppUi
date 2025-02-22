@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../utils/AppSlice'
+import { setUser } from '../utils/UserSlice'
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../utils/config'
 const SignIn = () => {
 
   const [email, setEmail] = useState("rahul@gmail.com")
@@ -11,7 +12,7 @@ const SignIn = () => {
   const navigate = useNavigate()
 
   async function submitHendler() {
-    const res = await axios.post("http://localhost:3000/signIn", { email, password }, { withCredentials: true })
+    const res = await axios.post(BASE_URL + "signIn", { email, password }, { withCredentials: true })
     dispatch(setUser(res.data))
     navigate("/feed")
   }
