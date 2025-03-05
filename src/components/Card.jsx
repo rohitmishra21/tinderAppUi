@@ -10,10 +10,7 @@ const Card = ({ user }) => {
     const dispatch = useDispatch()
     async function requestHendler(status, id) {
         const res = await axios.post(BASE_URL + "request/send/" + status + "/" + id, {}, { withCredentials: true })
-        console.log(res)
-
-        // dispatch(removeFeed(_id))
-
+        dispatch(removeFeed(_id))
     }
     return (user && <div className=''>
         <div className="card bg-base-300 w-96 h-[75vh] shadow-xl">
@@ -23,7 +20,6 @@ const Card = ({ user }) => {
                     alt="profile Img"
                     className='w-full h-full object-cover object-center'
                 />
-
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{firstName + " " + lastName}</h2>

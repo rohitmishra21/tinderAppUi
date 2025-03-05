@@ -39,7 +39,15 @@ const Navbar = () => {
                         </div>
 
                     </div>}
-                    {!user && <button className="btn btn-active btn-primary">       < Link to="/singIn">SignIn</Link></button>
+                    {!user &&
+                        <div>
+                            <button className="btn btn-active btn-primary mr-3">
+                                < Link to="/singUp">SignUp</Link>
+                            </button>
+                            <button className="btn btn-active btn-primary">
+                                < Link to="/singIn">SignIn</Link>
+                            </button>
+                        </div>
                     }
                     <ul
                         tabIndex={0}

@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../utils/UserSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/config'
 const SignIn = () => {
 
-  const [email, setEmail] = useState("rohit@gmail.com")
+  const [email, setEmail] = useState("rahul@gmail.com")
   const [password, setPassword] = useState("rohit2711")
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -50,9 +50,10 @@ const SignIn = () => {
               </svg>
               <input type="password" className="grow" onChange={(e) => setPassword(e.target.value)} value={password} />
             </label>
-            <div className="card-actions justify-end ">
-              <button className="btn btn-primary" onClick={submitHendler}>Sign In</button>
-            </div>
+
+            <button className="btn btn-primary w-full" onClick={submitHendler}>Sign In</button>
+
+            <Link to="/singUp" className='font-medium text-start'>New User?<span className="text-blue-600 ml-2">SignUp here</span></Link>
           </div>
         </div>
       </div>
