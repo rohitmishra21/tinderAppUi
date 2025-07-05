@@ -1,1 +1,1 @@
-export const BASE_URL = "https://tinderbackend-ix9o.onrender.com"
+export const BASE_URL = "https://tinderbackend-ix9o.onrender.com/"
