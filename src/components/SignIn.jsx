@@ -4,25 +4,31 @@ import { useDispatch } from 'react-redux'
 import { setUser } from '../utils/UserSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/config'
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+
 const SignIn = () => {
 
-  const [email, setEmail] = useState("rahul@gmail.com")
-  const [password, setPassword] = useState("rohit2711")
+  const [email, setEmail] = useState("")
+  const [err, seterr] = useState("")
+  const [password, setPassword] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   async function submitHendler() {
-    const res = await axios.post(BASE_URL + "signIn", { email, password }, { withCredentials: true })
-    dispatch(setUser(res.data))
-    navigate("/")
+    try {
+      const res = await axios.post(BASE_URL + "signIn", { email, password }, { withCredentials: true })
+      dispatch(setUser(res.data))
+      navigate("/")
+    } catch (err) {
+      seterr(err?.response?.data || "somthing went wrong");
+    }
   }
-
-
   return (
     <>
       <div className='flex justify-center mt-10'>
         <div className="card bg-base-300 w-96 shadow-xl">
-          <div className="card-body flex flex-col justify-center items-center gap-5">
+          <div className="card-body flex flex-col justify-center items-center gap-3">
             <label className="input input-bordered flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +54,15 @@ const SignIn = () => {
                   d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                   clipRule="evenodd" />
               </svg>
-              <input type="password" className="grow" onChange={(e) => setPassword(e.target.value)} value={password} />
+              <input type="password" placeholder='Password' className="grow" onChange={(e) => setPassword(e.target.value)} value={password} />
             </label>
-
+            <div>
+              <h1 className="text-center  text-red-500">{err}</h1>
+            </div>
             <button className="btn btn-primary w-full" onClick={submitHendler}>Sign In</button>
 
             <Link to="/singUp" className='font-medium text-start'>New User?<span className="text-blue-600 ml-2">SignUp here</span></Link>
+
           </div>
         </div>
       </div>

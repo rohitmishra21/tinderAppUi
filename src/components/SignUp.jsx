@@ -6,15 +6,11 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../utils/UserSlice";
 
 const SignUp = () => {
-    const [firstName, setfirstName] = useState("devolper");
-    const [lastName, setLastName] = useState("frontend");
-    const [profileImg, setProfileImg] = useState("https://i.pinimg.com/736x/c0/f1/18/c0f118f50f63ff81b75074ca9640d3b7.jpg");
-    const [email, setEmail] = useState("rohit12@gmail.com");
-    const [password, setPassword] = useState("rohit@123");
-    const [skills, setSkills] = useState("html, nodeJs");
-    const [age, setAge] = useState("20");
-    const [gender, setGender] = useState("male");
-    const [bio, setBio] = useState("i am a devloper")
+    const [firstName, setfirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [err, seterr] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
     async function signUpHendler() {
@@ -22,19 +18,18 @@ const SignUp = () => {
         try {
             const res = await axios.post(
                 BASE_URL + "signUp",
-                { firstName, lastName, profileImg, email, password, skills, age, gender, bio },
+                { firstName, lastName, email, password },
                 { withCredentials: true }
             );
-            console.log(res);
-
-
             navigate("/profile")
             dispatch(setUser(res.data))
 
-        } catch (error) {
-            console.log(error.response.data);
+            alert("User creadted succefully")
 
+        } catch (err) {
+            console.log(err?.response?.data?.errors);
 
+            seterr(err?.response?.data?.errors || "something went wrong");
         }
 
     }
@@ -50,6 +45,7 @@ const SignUp = () => {
                     <input
                         type="text"
                         value={firstName}
+                        required
                         onChange={(e) => setfirstName(e.target.value)}
                         className="input input-bordered w-full max-w-xs"
                     />
@@ -89,10 +85,14 @@ const SignUp = () => {
                             className="input input-bordered w-full max-w-xs"
                         />
                     </label>
+
                 </div>
-
-
-                <button className="btn btn-primary mt-6 w-full" onClick={signUpHendler}>
+                <div>
+                    {err.length > 0 &&
+                        <h1 className="text-center mt-2 text-red-500">{err}</h1>
+                    }
+                </div>
+                <button className="btn btn-primary mt-2 w-full" onClick={signUpHendler}>
                     Sign Up
                 </button>
                 <div className="mt-4">

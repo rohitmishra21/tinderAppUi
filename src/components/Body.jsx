@@ -19,7 +19,7 @@ const Body = () => {
 
         } catch (error) {
             if (error.status === 401) {
-                navigate("/singIn")
+                navigate("/singUp")
             }
 
 

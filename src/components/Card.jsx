@@ -13,7 +13,7 @@ const Card = ({ user }) => {
         dispatch(removeFeed(_id))
     }
     return (user && <div className=''>
-        <div className="card bg-base-300 w-96 h-[75vh] shadow-xl">
+        <div className="card bg-base-300 w-96 md:h-[75vh] shadow-xl">
             <figure>
                 <img
                     src={profileImg}

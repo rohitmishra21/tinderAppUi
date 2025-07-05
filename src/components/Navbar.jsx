@@ -6,7 +6,9 @@ import { BASE_URL } from '../utils/config'
 import { removeUser } from '../utils/UserSlice'
 
 const Navbar = () => {
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user.user)
+
+
     const dispatch = useDispatch()
 
 

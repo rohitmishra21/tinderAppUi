@@ -22,7 +22,9 @@ const Connections = () => {
     }
 
     if (userConnection.length === 0) {
-        return <h1>No your connection</h1>
+
+        return <h1 className='text-xl text-center mt-3'>You don't have any connection request</h1>
+
     }
     return (
 
