@@ -131,9 +131,14 @@ const EditProfile = ({ user }) => {
                         onChange={(e) => {
                             const file = e.target.files[0];
                             if (file) {
+                                if (file.size > 10 * 1024 * 1024) {
+                                    alert("Image is too large. Please upload an image under 10MB.");
+                                    return;
+                                }
+
                                 const reader = new FileReader();
                                 reader.onloadend = () => {
-                                    setProfileImg(reader.result);
+                                    setProfileImg(reader.result); // base64 string
                                 };
                                 reader.readAsDataURL(file);
                             }
