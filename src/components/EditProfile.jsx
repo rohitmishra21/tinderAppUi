@@ -133,7 +133,7 @@ const EditProfile = ({ user }) => {
                             if (file) {
                                 const reader = new FileReader();
                                 reader.onloadend = () => {
-                                    setProfileImg(reader.result); // base64 string
+                                    setProfileImg(reader.result);
                                 };
                                 reader.readAsDataURL(file);
                             }
