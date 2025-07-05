@@ -126,10 +126,18 @@ const EditProfile = ({ user }) => {
                         <span className="label-text">Profile Image URL</span>
                     </div>
                     <input
-                        type="text"
-                        value={profileImg}
-                        onChange={(e) => setProfileImg(e.target.value)}
-                        className="input input-bordered w-full"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                    setProfileImg(reader.result); // base64 string
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        }}
                     />
                 </label>
 
