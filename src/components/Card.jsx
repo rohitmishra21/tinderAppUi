@@ -18,7 +18,7 @@ const Card = ({ user }) => {
                 <img
                     src={profileImg}
                     alt="profile Img"
-                    className='md:w-full md:h-full h-20  object-cover object-center'
+                    className='md:w-full md:h-full h-42  object-cover object-center'
                 />
             </figure>
             <div className="card-body">
