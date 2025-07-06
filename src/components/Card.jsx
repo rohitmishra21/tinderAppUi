@@ -13,12 +13,12 @@ const Card = ({ user }) => {
         dispatch(removeFeed(_id))
     }
     return (user && <div className=''>
-        <div className="card bg-base-300 w-96 md:h-[75vh] shadow-xl">
+        <div className="card bg-base-300  w-96 md:h-[75vh]  shadow-xl">
             <figure>
                 <img
                     src={profileImg}
                     alt="profile Img"
-                    className='w-full h-full object-cover object-center'
+                    className='md:w-full md:h-full h-20  object-cover object-center'
                 />
             </figure>
             <div className="card-body">

@@ -11,7 +11,7 @@ const Chat = () => {
     const [message, setMessage] = useState([]);
     const [inputText, setInputText] = useState("");
 
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user.user);
     const userId = user?._id;
 
     const fetchingChatData = async () => {
@@ -90,14 +90,14 @@ const Chat = () => {
     }
 
     return (
-        <div className="w-full h-[80vh] flex justify-center text-amber-50">
-            <div className="w-1/2 h-full relative">
-                <div className="h-10 border border-white/30 py-2 bg-black">
-
+        <div className="w-full h-[78vh] flex justify-center text-amber-50">
+            <div className="md:w-1/2 h-full w-full relative">
+                <div className="h-10 border p-2 border-white/30 py-2 bg-black">
+                    Chat Box
                 </div>
-                <div className="w-full h-[68vh] overflow-y-auto bg-black  px-3">
+                <div className="w-full h-[68vh] overflow-y-auto bg-zinc-900 px-3">
                     {message.map((msg, i) => (
-                        <div className="text-white bg-indigo-600" key={i}>
+                        <div className="" key={i}>
                             <div
                                 className={
                                     "chat " +
@@ -125,16 +125,16 @@ const Chat = () => {
                     ))}
                     <div ref={messageEndRef} />
                 </div>
-                <div className="absolute bottom-2 flex w-full">
+                <div className="absolute  flex w-full">
                     <input
                         type="text"
                         onChange={(e) => setInputText(e.target.value)}
                         value={inputText}
                         onKeyDown={keyHandler}
                         placeholder="Type here"
-                        className="input w-full bg-black "
+                        className="p-2 w-full bg-black outline-none rounded-none border-none"
                     />
-                    <button className="btn btn-primary" onClick={sendMessageHandler}>
+                    <button className="btn btn-primary rounded-none" onClick={sendMessageHandler}>
                         Send
                     </button>
                 </div>
