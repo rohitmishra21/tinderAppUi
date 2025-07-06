@@ -85,13 +85,11 @@ const Chat = () => {
             userId,
             targetUserId,
             firstName: user.firstName,
-            profileImg: user.profileImg,
+            profileImg: profileImg || user?.profileImg || "https://i.pinimg.com/736x/89/b7/69/89b769cf256a81bcb7df2ab4fa3ddfc9.jpg",
             text: inputText,
         });
         setInputText("");
     }
-
-    // ✅ Show loading screen if user not ready
     if (!user || !user._id) {
         return <div className="text-white text-center mt-10">Loading chat...</div>;
     }
