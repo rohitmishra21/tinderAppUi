@@ -90,14 +90,14 @@ const Chat = () => {
     }
 
     return (
-        <div className="w-full h-[80vh] flex justify-center">
+        <div className="w-full h-[80vh] flex justify-center text-amber-50">
             <div className="w-1/2 h-full relative">
                 <div className="h-10 border border-white/30 py-2 bg-black">
 
                 </div>
-                <div className="w-full h-[68vh] overflow-y-auto bg-black px-3">
+                <div className="w-full h-[68vh] overflow-y-auto bg-black  px-3">
                     {message.map((msg, i) => (
-                        <div className="" key={i}>
+                        <div className="text-white bg-indigo-600" key={i}>
                             <div
                                 className={
                                     "chat " +
